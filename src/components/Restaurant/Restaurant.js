@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import React, { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Form, FormControl, Row } from "react-bootstrap";
 import Meal from "../Meal/Meal";
-import "./Restaurant.css";
 
 const Restaurant = () => {
   const [searchText, setSearchText] = useState("");
@@ -18,24 +20,31 @@ const Restaurant = () => {
     setSearchText(event.target.value);
   };
   return (
-    <Container>
-      <Row xs={1} md={2} lg={3} xl={4} className="g-4">
-        {meals.map((meal) => (
-          <Meal key={meal.idMeal} meal={meal}></Meal>
-        ))}
-      </Row>
-      {/* <div>
-        <h2>Find the food you want</h2>
-        <input onChange={searchFood} type="text" name="" id="" />
-        <br />
-        <h3>Result found: {meals.length}</h3>
-        <div className="meals-container">
+    <>
+      <Container>
+        <Form className="d-flex mb-5 justify-content-center">
+          <FormControl
+            type="search"
+            placeholder="Search your favorite meal"
+            className="me-2 w-50 border border-warning"
+            onChange={searchFood}
+            aria-label="Search"
+          />
+          <Button
+            variant="warning"
+            className="fw-bold d-flex justify-content-center align-items-center"
+          >
+            <FontAwesomeIcon icon={faSearch} className="me-3"></FontAwesomeIcon>{" "}
+            Search
+          </Button>
+        </Form>
+        <Row xs={1} md={2} lg={3} xl={4} className="g-4">
           {meals.map((meal) => (
             <Meal key={meal.idMeal} meal={meal}></Meal>
           ))}
-        </div>
-      </div> */}
-    </Container>
+        </Row>
+      </Container>
+    </>
   );
 };
 

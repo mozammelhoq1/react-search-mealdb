@@ -1,10 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./Meal.css";
+import { useNavigate } from "react-router-dom";
 
 const Meal = (props) => {
-  const { strMeal, strInstructions, strMealThumb } = props.meal;
-  //   const { handleAddToOrder, meal } = props;
+  const { strMeal, strInstructions, strMealThumb, idMeal } = props.meal;
+  const navigate = useNavigate();
+  const seeDetails = () => {
+    const dynamicPath = `/meal/${idMeal}`;
+    navigate(dynamicPath);
+  };
   return (
     <>
       <Col>
@@ -18,17 +25,13 @@ const Meal = (props) => {
             className="w-50"
             variant="outline-warning text-dark"
             size="sm"
+            onClick={seeDetails}
           >
-            Small button
+            Add This Food
+            <FontAwesomeIcon className="ms-2" icon={faShoppingCart} />
           </Button>
         </Card>
       </Col>
-      {/* <div className="meal">
-      <img src={strMealThumb} alt="" />
-      <h4>{strMeal}</h4>
-      <p>{strInstructions.slice(0, 100)}</p>
-      <button onClick={() => handleAddToOrder(meal)}>Add this Food</button>
-    </div> */}
     </>
   );
 };
